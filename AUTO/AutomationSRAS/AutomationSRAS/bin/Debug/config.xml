@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TopologyFilePath>Map\mira_map.dat</TopologyFilePath>
+  <IEListFilePath>Map\mira_ie_list.dat</IEListFilePath>
+  <RequestFilePath>Request\Mira\18_static_MIRA_bw10-15-20-30_400_700_dl[36-70].txt</RequestFilePath>
+  <TimerInterval>5</TimerInterval>
+  <LogFilePath>D:\Log</LogFilePath>
+  <LogFileName>test.log</LogFileName>
+  <LogActivated>false</LogActivated>
+  <StatisticsActivated>false</StatisticsActivated>
+  <StatisticsFilepath>Result\Mira\18_static_MIRA_bw10-15-20-30_400_700_dl[36-70].txt</StatisticsFilepath>
+  <ResultPrefix>Result</ResultPrefix>
+  <ComputingPrefix>Computing</ComputingPrefix>
+  <AcceptedBandwidthRatioPrefix>AcceptedBandwidthRatio</AcceptedBandwidthRatioPrefix>
+  <NumberOfSplit>100</NumberOfSplit>
+  <UnicastRoutingAlgorithms>
+    <RoutingAlgorithm Name="P-LCBR" Selected="false">
+      <Params>
+        <Param Name="K" Value="100" />
+        <Param Name="Alpha" Value="1000" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="MDMF" Selected="false">
+      <Params>
+        <Param Name="Mi" Value="0.5" />
+        <Param Name="Upsilon" Value="0.5" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="MDMF_exDij" Selected="false">
+      <Params>
+        <Param Name="Mi" Value="0.5" />
+        <Param Name="Upsilon" Value="0.5" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="MDMF_Heu" Selected="false">
+      <Params>
+        <Param Name="Mi" Value="0.5" />
+        <Param Name="Upsilon" Value="0.5" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="BDCRA" Selected="false" />
+    <RoutingAlgorithm Name="BDCRA-Heu" Selected="false" />
+    <RoutingAlgorithm Name="DCW_heDij" Selected="false" />
+    <RoutingAlgorithm Name="BBW_exDij" Selected="false" />
+    <RoutingAlgorithm Name="HBDRA" Selected="false">
+      <Params>
+        <Param Name="Epsilon" Value="0.01" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="LDPRA" Selected="false" />
+    <RoutingAlgorithm Name="HRABDC" Selected="false" />
+    <RoutingAlgorithm Name="MDWCRA" Selected="false" />
+    <RoutingAlgorithm Name="M-MDWCRA" Selected="true" />
+    <RoutingAlgorithm Name="DC-MHA" Selected="false" />
+    <RoutingAlgorithm Name="eHRABDC" Selected="false" />
+    <RoutingAlgorithm Name="DC-MIRA" Selected="false">
+      <Params>
+        <Param Name="Alpha" Value="1" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="ACSBDRA" Selected="false" />
+    <RoutingAlgorithm Name="PBWA" Selected="false" />
+    <RoutingAlgorithm Name="NewPBWA" Selected="false" />
+    <RoutingAlgorithm Name="NewBLGC" Selected="false" />
+    <RoutingAlgorithm Name="MHA" Selected="false" />
+    <RoutingAlgorithm Name="WSP" Selected="false" />
+    <RoutingAlgorithm Name="BCRA" Selected="false" />
+    <RoutingAlgorithm Name="MIRA" Selected="false">
+      <Params>
+        <Param Name="Alpha" Value="1" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="DORA" Selected="false">
+      <Params>
+        <Param Name="BWP" Value="0.9" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="RRATE" Selected="false">
+      <Params>
+        <Param Name="K" Value="25" />
+        <Param Name="N" Value="10" />
+        <Param Name="K1" Value="0.5" />
+        <Param Name="K2" Value="0.5" />
+      </Params>
+    </RoutingAlgorithm>
+    <RoutingAlgorithm Name="POOA" Selected="false">
+      <Params>
+        <Param Name="K" Value="20" />
+      </Params>
+    </RoutingAlgorithm>
+  </UnicastRoutingAlgorithms>
+  <MulticastRoutingAlgorithms>
+    <RoutingAlgorithm Name="SPT" Selected="false" />
+    <RoutingAlgorithm Name="LMMIRA" Selected="true" />
+  </MulticastRoutingAlgorithms>
+</Configuration>

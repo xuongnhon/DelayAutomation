@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93760B40-BC92-4DC1-9955-AF3DDAAFE641}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutomationSRAS</RootNamespace>
+    <AssemblyName>AutomationSRAS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="config\automation\AlgorithmCfg.cs" />
+    <Compile Include="config\automation\AlgorithmsCfg.cs" />
+    <Compile Include="config\automation\AutomationConfigurator.cs" />
+    <Compile Include="config\automation\RequestCfg.cs" />
+    <Compile Include="config\automation\RequestsCfg.cs" />
+    <Compile Include="config\automation\SimulatorCfg.cs" />
+    <Compile Include="config\automation\TopologiesCfg.cs" />
+    <Compile Include="config\automation\TopologyCfg.cs" />
+    <Compile Include="config\simulator\AlgorithmCfg.cs" />
+    <Compile Include="config\simulator\AlgorithmsCfg.cs" />
+    <Compile Include="config\simulator\ParamCfg.cs" />
+    <Compile Include="config\simulator\ParamsCfg.cs" />
+    <Compile Include="config\simulator\SimulationConfigurator.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bin\Debug\Map\ansnet_ie.dat" />
+    <None Include="bin\Debug\Map\ansnet_map.dat" />
+    <None Include="bin\Debug\Map\cesnet_ie_list.dat" />
+    <None Include="bin\Debug\Map\cesnet_map.dat" />
+    <None Include="bin\Debug\Map\lmmira_map.dat" />
+    <None Include="bin\Debug\Map\mira_ie_list.dat" />
+    <None Include="bin\Debug\Map\mira_map.dat" />
+    <None Include="bin\Debug\Map\NET-50Node-old.dat" />
+    <None Include="bin\Debug\Map\NET-50Node.dat" />
+    <None Include="bin\Debug\Map\NET1.dat" />
+    <None Include="bin\Debug\Map\net1_ie.dat" />
+    <None Include="bin\Debug\Map\spt_map.dat" />
+    <None Include="bin\Debug\Request\lmmira\static_request.inp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\AutomationConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="bin\Debug\Map\IE_NET1.txt" />
+    <Content Include="bin\Debug\Request\Ansnet\01_static_ANSNET_bw10-20-30-40-50_1000_dl[19-30].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\02_static_ANSNET_bw10-20-30-40-50_5000_dl[19-30].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\03_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[19-30].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\04_dynamic_ANSNET_bw10-20-30-40-50_400_2000_80_20_dl[19-30].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\05_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[30-60].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\06_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[60-90].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\07_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[90-120].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\08_static_ANSNET_bw10-20-30-40-50_5000_dl[30-60].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\09tmp_static_ANSNET_bw10-20-30-40-50_5000_dl[40-70].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\10_static_ANSNET_bw10-20-30-40-50_5000_dl[70-100].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\11_static_ANSNET_bw10-20-30-40-50_5000_dl[20-154].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\12_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[20-154].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\13_static_ANSNET_bw10-20-30-40-50_5000_dl[120-170].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\14_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[120-170].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\15_static_ANSNET_bw10-20-30-40-50_5000_dl[127-182].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\16_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[127-182].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\17_static_ANSNET_bw10-20-30-40-50_5000_dl[100-155].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\18_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[100-155].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\18_static.txt" />
+    <Content Include="bin\Debug\Request\Ansnet\19_static_ANSNET_bw10-20-30-40-50_5000_dl[155-209].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\20_dynamic_ANSNET_bw10-20-30-40-50_400_2000_40_10_dl[155-209].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\21_static_ANSNET_bw10-15-20-30-40_700_dl[155-209].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\23_static_ANSNET_bw10-15-20-30-40_1000_dl[155-209].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\25_static_ANSNET_bw10-20-30-40-50_1000_dl[100-155].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\dynamic_ANSNET_bw[10-40]_dl[40-50]_400_2000_40_10.txt" />
+    <Content Include="bin\Debug\Request\Ansnet\static_ANSNET_bw10-20-30-40-50_1000_dl[130-145].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\static_ANSNET_bw10-20-30-40-50_1000_dl[135-145].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\static_ANSNET_bw10-20-30-40-50_1000_dl[140-145].txt" />
+    <Content Include="bin\Debug\Request\Ansnet\test_ANSNET.txt" />
+    <Content Include="bin\Debug\Request\Cesnet\01_dynamic_CESNET_bw40-60-80-120_400_2000_40_10_[15-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\02_dynamic_CESNET_bw40-60-80-120_400_2000_40_10_[69-111].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\03_dynamic_CESNET_bw40-60-80-120_400_2000_40_10_[39-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\04_dynamic_CESNET_bw40-60-80-120_400_2000_80_30_[39-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\05_dynamic_CESNET_bw40-60-80-120_400_2000_80_30_[69-98].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\06_dynamic_CESNET_bw40-60-80-120_400_2000_80_30_[39-98].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\07_dynamic_CESNET_bw40-60-80-120_400_2000_80_30_[54-69] - Copy.txt" />
+    <Content Include="bin\Debug\Request\Cesnet\07_static_CESNET_bw40-60-80-120_400_2000_[54-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\08_dynamic_CESNET_bw40-60-80-120_400_2000_80_30_[69-83].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\09_dynamic_CESNET_bw20-40-60-80_400_2000_80_30_[54-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\10_dynamic_CESNET_bw20-40-60-80_400_2000_40_10_[54-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\11_dynamic_CESNET_bw20-40-60-80_400_2000_40_10_[54-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\12_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[54-69].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\13_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[29-40].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\14_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[40-50].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\15_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[50-61].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\16_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[19-29].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\17_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[9-19].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\17_static_CESNET_bw20-40-60-80_400_700_[9-19].txt" />
+    <Content Include="bin\Debug\Request\Cesnet\18_dynamic_CESNET_bw20-40-60-80_400_2000_80_20_[61-71].txt" />
+    <Content Include="bin\Debug\Request\Mira\02_static_MIRA_bw10-15-20-30_500_dl[13-20].txt" />
+    <Content Include="bin\Debug\Request\Mira\18_static_MIRA_bw10-15-20-30_400_700_dl[36-70].txt" />
+    <Content Include="bin\Debug\Request\NET1\01_dynamic_NET1_bw40-80-120-160_400_2000_80_30.txt" />
+    <Content Include="bin\Debug\Request\NET1\02_dynamic_NET1_bw20-40-60-80_400_2000_80_30.txt" />
+    <Content Include="bin\Debug\Request\NET1\03_dynamic_NET1_bw10-20-30-40-50_400_2000_80_30_[15-36].txt" />
+    <Content Include="bin\Debug\Request\NET1\04_dynamic_NET1_bw10-20-30-40-50_400_2000_40_10_[15-36].txt" />
+    <Content Include="bin\Debug\Request\NET1\05_dynamic_NET1_bw10-20-30-40-50_400_2000_40_10_[10-15].txt" />
+    <Content Include="bin\Debug\Request\NET1\05_static_NET1_bw10-20-30-40-50_400_2000_[10-15].txt" />
+    <Content Include="bin\Debug\Request\NET1\06_dynamic_NET1_bw10-20-30-40-50_400_2000_40_10_[15-21].txt" />
+    <Content Include="bin\Debug\Request\NET1\06_static_NET1_bw10-20-30-40-50_400_2000_[15-21].txt" />
+    <Content Include="bin\Debug\Request\NET1\07_static_ANSNET_bw10-20-30-40-50_1000_dl[10-15].txt" />
+    <Content Include="bin\Debug\Request\NET1\08_static_ANSNET_bw10-20-30-40-50_1000_dl[15-21].txt" />
+    <Content Include="bin\Debug\Request\NET1\09_static_NET1_bw5-7-9-11-13_1000_dl[10-15].txt" />
+    <Content Include="bin\Debug\Request\NET1\10_static_NET1_bw1_700_dl[10-15].txt" />
+    <Content Include="bin\Debug\Request\NET1\11_static_NET1_bw1_700_dl[4-10].txt" />
+    <Content Include="bin\Debug\Request\NET1\12_dynamic_NET1_bw3-5-7-9_400_2000_40_10_[21-26].txt" />
+    <Content Include="bin\Debug\Request\NET1\13_dynamic_NET1_bw3-5-7-9_400_2000_80_30_[21-26].txt" />
+    <Content Include="bin\Debug\Request\NET1\14_dynamic_NET1_bw3-5-7-9_400_2000_80_30_[26-32].txt" />
+    <Content Include="bin\Debug\Request\NET1\15_dynamic_NET1_bw3-5-7-9_400_2000_80_20_[26-32].txt" />
+    <Content Include="bin\Debug\Request\NET1\dynamic_NET1_bw10-20-30-40-50_400_2000_40_10.txt" />
+    <Content Include="bin\Debug\Request\NET1\dynamic_NET1_bw10-20-30-40-50_400_2000_40_10_100-200MS.txt" />
+    <Content Include="bin\Debug\Request\NET1\dynamic_NET1_bw10-20-30-40-50_400_4000_40_10.txt" />
+    <Content Include="bin\Debug\Request\NET1\dynamic_NET1_bw10-20-30-40-50_400_4000_80_30_[15-25].txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SRAS\NetworkSimulator\NetworkSimulator\NetworkSimulator.csproj">
+      <Project>{d04c4c51-4030-4116-a6cc-56ff80e86bf5}</Project>
+      <Name>NetworkSimulator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\Request\Spt\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

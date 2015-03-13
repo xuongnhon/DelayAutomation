@@ -1,0 +1,45 @@
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe.config
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.pdb
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csprojResolveAssemblyReference.cache
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.exe
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.pdb
+D:\TEMP\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe.config
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.pdb
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.exe
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.pdb
+D:\AUTOMATION_SRAS\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csprojResolveAssemblyReference.cache
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe.config
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.pdb
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.exe
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.pdb
+D:\Cao hoc\Luan van cao hoc\refsSangThao\Thao\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csprojResolveAssemblyReference.cache
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe.config
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.pdb
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.exe
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.pdb
+D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csprojResolveAssemblyReference.cache
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe.config
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.pdb
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.exe
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.pdb
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csprojResolveAssemblyReference.cache
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
+C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb
