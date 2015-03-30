@@ -18,3 +18,5 @@ D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\SRAS\RequestGen
 D:\Cao hoc\Luan van cao hoc\KhoaLuan_Dung\Delay\Delay Automation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.csprojResolveAssemblyReference.cache
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.exe
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.pdb

@@ -95,6 +95,11 @@ namespace NetworkSimulator.NetworkComponents
                     source.Links.Add(newLink);
                 }
             }
+            //xuongnhon, sao lai khong copy _IEPairs
+            foreach (var ie in topology.IEPairs)
+            {
+                _IEPairs.Add(new IEPair(this._Nodes[ie.Ingress.Key], this._Nodes[ie.Egress.Key]));
+            }
         }
 
         private void Initialize()
@@ -227,6 +232,14 @@ namespace NetworkSimulator.NetworkComponents
                 }
             }
             return s;
+        }
+
+        public void CalculatePercentOfBandwidthUsedPerLink(NetworkSimulator.SimulatorComponents.Response _Response)
+        {
+            foreach (var _Link in this.Links)
+            {
+                _Link.AddPercentOfBandwidthUsed(_Response, _Link.UsingBandwidth / _Link.Capacity * 100);
+            }
         }
     }
 }

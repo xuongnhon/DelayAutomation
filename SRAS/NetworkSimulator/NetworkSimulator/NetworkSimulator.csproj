@@ -53,6 +53,7 @@
     <Compile Include="RoutingComponents\CommonAlgorithms\FloydWarshall.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\GetDelayInfo.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\LDP.cs" />
+    <Compile Include="RoutingComponents\CommonAlgorithms\MathHelper.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\ShortestPathsSet.cs" />
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\Lmmira.cs" />
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\LmmiraCore.cs" />

@@ -39,3 +39,9 @@ C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\NetworkSimulator\Netwo
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\NetworkSimulator\NetworkSimulator\obj\x86\Debug\NetworkSimulator.csproj.ResolveComReference.cache
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\NetworkSimulator\NetworkSimulator\obj\x86\Debug\NetworkSimulator.exe
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\NetworkSimulator\NetworkSimulator\obj\x86\Debug\NetworkSimulator.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\NetworkSimulator\NetworkSimulator\bin\Debug\NetworkSimulator.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\NetworkSimulator\NetworkSimulator\bin\Debug\NetworkSimulator.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\NetworkSimulator\NetworkSimulator\bin\Debug\Troschuetz.Random.dll
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\NetworkSimulator\NetworkSimulator\obj\x86\Debug\NetworkSimulator.csproj.ResolveComReference.cache
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\NetworkSimulator\NetworkSimulator\obj\x86\Debug\NetworkSimulator.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\NetworkSimulator\NetworkSimulator\obj\x86\Debug\NetworkSimulator.pdb

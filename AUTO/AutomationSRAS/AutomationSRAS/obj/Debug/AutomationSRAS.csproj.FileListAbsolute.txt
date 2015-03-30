@@ -43,3 +43,12 @@ C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\Automat
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe.config
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\AutomationSRAS.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\bin\Debug\NetworkSimulator.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csprojResolveAssemblyReference.cache
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.csproj.ResolveComReference.cache
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\AUTO\AutomationSRAS\AutomationSRAS\obj\Debug\AutomationSRAS.pdb

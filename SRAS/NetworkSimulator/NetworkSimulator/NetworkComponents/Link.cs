@@ -24,6 +24,8 @@ namespace NetworkSimulator.NetworkComponents
 
         private double _Delay;
 
+        private Dictionary<NetworkSimulator.SimulatorComponents.Response, double> _PercentOfBandwidthUsed;
+
         //17.11.2014 ThaoHT: Dynamic Delay
         private double _DDelay;
 
@@ -75,7 +77,11 @@ namespace NetworkSimulator.NetworkComponents
             get { return _Delay + 1; }
             set { _DDelay = value; }
         }
-        
+
+        public Dictionary<NetworkSimulator.SimulatorComponents.Response, double> PercentOfBandwidthUsed
+        {
+            get { return _PercentOfBandwidthUsed; }
+        }
         #endregion
 
         public Link(Node source, Node destination, double capacity, double usingBandwidth, double delay)
@@ -92,6 +98,11 @@ namespace NetworkSimulator.NetworkComponents
         {
             string[] v = _Key.Split('|');
             return "LNK-(" + v[0] + "-" + v[1] + ") CAP=" + _Capacity + " RSD=" + this.ResidualBandwidth + " DELAY=" + this.Delay;
+        }
+
+        public void AddPercentOfBandwidthUsed(NetworkSimulator.SimulatorComponents.Response _Response, double _Value)
+        {
+            this._PercentOfBandwidthUsed.Add(_Response, _Value);
         }
     }
 }
