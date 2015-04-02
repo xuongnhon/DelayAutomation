@@ -20,3 +20,7 @@ C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\RequestGenerator\obj\x
 C:\Users\Len Kagamine\Desktop\Delay\Delay Automation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.pdb
 C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.exe
 C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\bin\Debug\RequestGenerator.exe
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\bin\Debug\RequestGenerator.pdb
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\bin\Debug\Troschuetz.Random.dll
+C:\Users\Len Kagamine\Documents\GitHub\DelayAutomation\SRAS\RequestGenerator\obj\x86\Debug\RequestGenerator.csprojResolveAssemblyReference.cache

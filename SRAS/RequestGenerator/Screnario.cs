@@ -45,5 +45,7 @@ namespace RequestGenerator
         }
 
         public virtual void Generate(string filename) { }
+
+        public Screnario() { }
     }
 }
