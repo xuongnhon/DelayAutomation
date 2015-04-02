@@ -7,11 +7,11 @@ using System.Text;
 
 namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 {
-    class HRABDC : RoutingStrategy
+    class New_HRABDC : RoutingStrategy
     {
         private static readonly double MaxValue = 10000;
 
-        public HRABDC(Topology topology)
+        public New_HRABDC(Topology topology)
             : base(topology)
         {
             _Topology = topology;

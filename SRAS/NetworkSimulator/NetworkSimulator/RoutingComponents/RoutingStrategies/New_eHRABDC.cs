@@ -7,11 +7,11 @@ using System.Text;
 
 namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 {
-    class HRABDC : RoutingStrategy
+    class New_eHRABDC : RoutingStrategy
     {
         private static readonly double MaxValue = 10000;
 
-        public HRABDC(Topology topology)
+        public New_eHRABDC(Topology topology)
             : base(topology)
         {
             _Topology = topology;
@@ -86,7 +86,7 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             topology.Links = null;
         }
 
-        private List<Link> FindOptimalPath(
+        public List<Link> FindOptimalPath(
             Topology t, HashSet<string> E, int s, int d, Dictionary<string, double> w1, Dictionary<string, double> w2, double c2)
         {
             int nv = t.Nodes.Count;
@@ -160,22 +160,42 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
         public override List<Link> GetPath(Request request)
         {
             HashSet<string> eliminatedLinks = new HashSet<string>();
-            Dictionary<string, double> w1 = new Dictionary<string, double>(); // link.Key, link_weight
-            Dictionary<string, double> w2 = new Dictionary<string, double>();// link.Key, link_delay
+            Dictionary<string, double> w1 = new Dictionary<string, double>();
+            Dictionary<string, double> w2 = new Dictionary<string, double>();
             foreach (var link in _Topology.Links)
             {
                 if (link.UsingBandwidth == 0)
                     w1[link.Key] = 1d / (link.Capacity);
                 else
                     w1[link.Key] = link.UsingBandwidth / (link.ResidualBandwidth);
-
                 w2[link.Key] = link.Delay;
                 if (link.ResidualBandwidth < request.Demand)
                     eliminatedLinks.Add(link.Key);
             }
 
-            var path = FindOptimalPath(
+            var tempPath = FindOptimalPath(
                 _Topology, eliminatedLinks, request.SourceId, request.DestinationId, w1, w2, request.Delay);
+
+            var path = tempPath;
+
+            while (tempPath.Count > 0)
+            {
+                //foreach (var link in tempPath)
+                //    Console.Write(link.Key + "-");
+                //Console.WriteLine(tempPath.Sum(l => w1[l.Key]));
+                if (tempPath.Sum(l => w1[l.Key]) < path.Sum(l => w1[l.Key]))
+                    path = tempPath;
+                //if (tempPath.Sum(l => w1[l.Key]) * tempPath.Count < path.Sum(l => w1[l.Key]) * path.Count)
+                //    path = tempPath;
+
+                double maxWeight = tempPath.Max(l => w1[l.Key]);
+                var cl = tempPath.Where(l => w1[l.Key] == maxWeight).ToList();
+                foreach (var link in cl)
+                    eliminatedLinks.Add(link.Key);
+
+                tempPath = FindOptimalPath(
+                    _Topology, eliminatedLinks, request.SourceId, request.DestinationId, w1, w2, request.Delay);
+            }
 
             if (path.Sum(l => l.Delay) > request.Delay)
                 throw new Exception("Not feasible path");

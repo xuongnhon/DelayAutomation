@@ -175,7 +175,7 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
             var tempPath = FindOptimalPath(
                 _Topology, eliminatedLinks, request.SourceId, request.DestinationId, w1, w2, request.Delay);
-            
+
             var path = tempPath;
 
             while (tempPath.Count > 0)
@@ -187,12 +187,12 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                     path = tempPath;
                 //if (tempPath.Sum(l => w1[l.Key]) * tempPath.Count < path.Sum(l => w1[l.Key]) * path.Count)
                 //    path = tempPath;
-                
+
                 double maxWeight = tempPath.Max(l => w1[l.Key]);
                 var cl = tempPath.Where(l => w1[l.Key] == maxWeight).ToList();
                 foreach (var link in cl)
                     eliminatedLinks.Add(link.Key);
-                
+
                 tempPath = FindOptimalPath(
                     _Topology, eliminatedLinks, request.SourceId, request.DestinationId, w1, w2, request.Delay);
             }
