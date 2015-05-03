@@ -10,8 +10,9 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 {
     public class M_MDWCRA : RoutingStrategy
     {
-        private static readonly double MaxValue = 10000;
-        private Dictionary<IEPair, List<Link>> _Cie;
+        //private static readonly double MaxValue = 10000;
+        //private Dictionary<IEPair, List<Link>> _Cie;
+        LDP _ldp;
 
         public M_MDWCRA(Topology topology)
             : base(topology)
@@ -22,10 +23,13 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
         private void Initialize()
         {
-            _Cie = new Dictionary<IEPair, List<Link>>();
+            //_Cie = new Dictionary<IEPair, List<Link>>();
+
+            _ldp = new LDP(_Topology);
         }
 
-        private List<Link> FindLeastDelayPath(int s, int d, HashSet<Link> E)
+        // caoth
+        /*private List<Link> FindLeastDelayPath(int s, int d, HashSet<Link> E)
         {
             // Initialize
             int nv = _Topology.Nodes.Count;
@@ -63,9 +67,9 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                 }
             }
             return ConstructPath(prev, d);
-        }
+        }*/
 
-        private List<Link> ConstructPath(int[] prev, int d)
+        /*private List<Link> ConstructPath(int[] prev, int d)
         {
             int v = d;
             List<Link> path = new List<Link>();
@@ -80,10 +84,10 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             path.Reverse();
 
             return path;
-        }
+        }*/
 
         // caoth 14/07/15
-        private List<Link> FindCDSet(Node s, Node d)
+        /*private List<Link> FindCDSet(Node s, Node d)
         {
             LDP ldp = new LDP(_Topology);
             List<Link> LP = null;
@@ -108,12 +112,12 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                 foreach (var link in bottleneckLinks)
                 {
                     CD.Add(link);
-                    E.Add(link);
+                    E.Add(link); // remove critical link
                 }
             }
 
             return CD;
-        }
+        }*/
             
         public override List<Link> GetPath(SimulatorComponents.Request request)
         {
@@ -156,26 +160,47 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                         eliminatedLinks.Add(link);
                     // Find the next LDP
                     lDP = FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
-                }*/
 
                 List<Link> CD = FindCDSet(ie.Ingress, ie.Egress);
                 foreach (Link link in CD)
                 {
                     weight[link] += 1; // lamda, CHÚ Ý!
+                }*/
+
+                // caoth 2015 : same as MDWCRA
+
+                eliminatedLinks.Clear();
+
+                List<Link> lDP = _ldp.FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
+
+                while (lDP.Count > 0)
+                {
+                    var B = lDP.Min(l => l.ResidualBandwidth);                    
+                    var bottleneckLinks = lDP.Where(l => l.ResidualBandwidth == B);
+                    foreach (var link in bottleneckLinks)
+                    {                        
+                        weight[link] += 1; // lamda, paper 2003 p.6
+
+                        eliminatedLinks.Add(link); // M-MDWDRA
+                    }                    
+
+                    // Find the next LDP
+                    lDP = _ldp.FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
                 }
             }
 
             //eliminatedLinks.Clear();            
                            
-            EDSP edsp = new EDSP(_Topology);
+            EDSP edsp = new EDSP(_Topology); // extended Dijkstra
             var path = edsp.FindFeasiblePath(
                 request.SourceId, request.DestinationId, eliminatedBwLinks, weight, delay, (int)request.Delay);
+            // mang delay so nguyen dung lam chi so trong extended Dijkstra
 
-            if (path.Sum(l => l.Delay) > request.Delay)
-                throw new Exception("Not feasible path");
+            //if (path.Sum(l => l.Delay) > request.Delay)
+            //    throw new Exception("Not feasible path");
 
-            if (_Topology.Links.Min(l => l.ResidualBandwidth) < 0)
-                throw new Exception("Residual bandwidth less than 0");
+            //if (_Topology.Links.Min(l => l.ResidualBandwidth) < 0)
+            //    throw new Exception("Residual bandwidth less than 0");
 
             return path;
         }

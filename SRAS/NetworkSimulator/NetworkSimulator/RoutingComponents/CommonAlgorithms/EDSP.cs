@@ -6,6 +6,7 @@ using System.Text;
 
 namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
 {
+    // caoth // extended Dijkstra
     public class EDSP
     {
         private Topology _Topology;

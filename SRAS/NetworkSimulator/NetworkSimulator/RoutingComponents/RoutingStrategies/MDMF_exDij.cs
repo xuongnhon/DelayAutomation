@@ -20,7 +20,6 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             _Topology = topology;
         }
 
-        //private List<Link> FindCDSet(Node s, Node d, HashSet<Link> eliminatedLinks)
         private List<Link> FindCDSet(Node s, Node d)
         {
             LDP ldp = new LDP(_Topology);
@@ -33,16 +32,10 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                 LP = ldp.FindLeastDelayPath(s.Key, d.Key, E);
                 if (LP.Count == 0)
                     break;
-                
-                //double minRB = LP.Min(l => l.ResidualBandwidth);
+
+                double minRB = LP.Min(l => l.ResidualBandwidth);
                 //Link cd = LP.FirstOrDefault(l => l.ResidualBandwidth == minRB);
-
-                //CD.Add(cd);
-                //E.Add(cd);
-
-                // caoth 14/07/15
-                var B = LP.Min(l => l.ResidualBandwidth);
-                var bottleneckLinks = LP.Where(l => l.ResidualBandwidth == B);
+                var bottleneckLinks = LP.Where(l => l.ResidualBandwidth == minRB);
                 foreach (var link in bottleneckLinks)
                 {
                     CD.Add(link);
@@ -55,39 +48,34 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
         public override List<Link> GetPath(Request request)
         {
-            List<Link> path = null;
-            Dictionary<Link, double> weight = new Dictionary<Link, double>();
-            Dictionary<Link, int> delay = new Dictionary<Link, int>();
-            HashSet<Link> eliminatedBwLinks = new HashSet<Link>();
             FordFulkerson fordFulkerson = new FordFulkerson(_Topology);
-            //Dijkstra dijkstra = new Dijkstra(_Topology);
-            Dictionary<Link, double> oldResidualBandwidth = new Dictionary<Link, double>();
+            Dijkstra dijkstra = new Dijkstra(_Topology);
+            Dictionary<Link, double> oldResidualBandwidths = new Dictionary<Link, double>();
 
             Dictionary<Link, double> sumCM = new Dictionary<Link, double>();
             Dictionary<Link, double> sumCD = new Dictionary<Link, double>();
 
-            EDSP edsp = new EDSP(_Topology);
+            HashSet<Link> eliminatedLinks = new HashSet<Link>();
+            Dictionary<Link, double> w1 = new Dictionary<Link, double>();
+            Dictionary<Link, int> w2 = new Dictionary<Link, int>();
 
             // initialize
             foreach (Link link in _Topology.Links)
             {
-                weight[link] = 0;
+                //weights[link] = 0;
                 sumCD[link] = 0;
                 sumCM[link] = 0;
-                delay[link] = (int)link.Delay;
+
+                w1[link] = 0;
+                w2[link] = (int)link.Delay;
 
                 if (link.ResidualBandwidth < request.Demand)
-                {
-                    eliminatedBwLinks.Add(link);
-                    oldResidualBandwidth[link] = link.ResidualBandwidth;
-                    link.ResidualBandwidth = 0;
-                }
+                    eliminatedLinks.Add(link);
             }
 
             foreach (IEPair ie in _Topology.IEPairs)
             {
                 List<Link> CM = fordFulkerson.FindMinCutSet(ie.Ingress, ie.Egress);
-                //List<Link> CD = FindCDSet(ie.Ingress, ie.Egress, eliminatedLinks);
                 List<Link> CD = FindCDSet(ie.Ingress, ie.Egress);
 
                 foreach (Link link in CM)
@@ -103,15 +91,12 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
             foreach (Link link in _Topology.Links)
             {
-                weight[link] = (1 + Mi * sumCM[link] + Upsilon * sumCD[link]) / link.ResidualBandwidth;
+                //weights[link] = (1 + Mi * sumCM[link] + Upsilon * sumCD[link]) / link.ResidualBandwidth;
+                w1[link] = (1 + Mi * sumCM[link] + Upsilon * sumCD[link]) / link.ResidualBandwidth;
             }
 
-            path = edsp.FindFeasiblePath(request.SourceId, request.DestinationId, eliminatedBwLinks, weight, delay, (int)request.Delay);
-
-            foreach (var item in oldResidualBandwidth) // because fordFulkerson implementation bases on bandwidth to eliminate link
-            {
-                item.Key.ResidualBandwidth = item.Value;
-            }
+            EDSP edsp = new EDSP(_Topology);
+            var path = edsp.FindFeasiblePath(request.SourceId, request.DestinationId, eliminatedLinks, w1, w2, (int)request.Delay);
 
             return path;
         }

@@ -10,22 +10,27 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 {
     public class MDWCRA : RoutingStrategy
     {
-        private static readonly double MaxValue = 10000;
-        private Dictionary<IEPair, List<Link>> _Cie;
+        //private static readonly double MaxValue = 10000;
+        //private Dictionary<IEPair, List<Link>> _Cie;
+
+        LDP _ldp;// = new LDP(_Topology);
 
         public MDWCRA(Topology topology)
             : base(topology)
         {
             _Topology = topology;
-            Initialize();
+            Initialize();            
         }
 
         private void Initialize()
         {
-            _Cie = new Dictionary<IEPair, List<Link>>();
+            //_Cie = new Dictionary<IEPair, List<Link>>();
+
+            _ldp = new LDP(_Topology);
         }
 
-        private List<Link> FindLeastDelayPath(int s, int d, HashSet<Link> E)
+        //caoth
+        /*private List<Link> FindLeastDelayPath(int s, int d, HashSet<Link> E)
         {
             // Initialize
             int nv = _Topology.Nodes.Count;
@@ -80,61 +85,71 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             path.Reverse();
 
             return path;
-        }
+        }*/
             
+        // caoth
         public override List<Link> GetPath(SimulatorComponents.Request request)
         {
             // Initialize all link weights to zero.
-            Dictionary<Link, double> weight = new Dictionary<Link, double>();
-            Dictionary<Link, int> delay = new Dictionary<Link, int>();
+            Dictionary<Link, double> weights = new Dictionary<Link, double>();
+            Dictionary<Link, int> delays = new Dictionary<Link, int>();
+            HashSet<Link> eliminatedBwLinks = new HashSet<Link>();
             foreach (var link in _Topology.Links)
             {
-                weight[link] = 0;
-                delay[link] = (int)link.Delay;
+                weights[link] = 0;
+                delays[link] = (int)link.Delay;
+
+                if (link.ResidualBandwidth < request.Demand)
+                    eliminatedBwLinks.Add(link);
             }
 
             HashSet<Link> eliminatedLinks = new HashSet<Link>();
             foreach (var ie in _Topology.IEPairs)
             {
                 eliminatedLinks.Clear();
-                _Cie[ie] = new List<Link>();
-                List<Link> lDP = FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
+                //_Cie[ie] = new List<Link>();
+                List<Link> lDP = _ldp.FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
    
                 while (lDP.Count > 0)
                 {
                     var B = lDP.Min(l => l.ResidualBandwidth);
-                    var D = lDP.Sum(l => l.Delay);
+                    //var D = lDP.Sum(l => l.Delay);
                     // Label bottleneck links of LDP as critical, and add them to Cst
+                    // For each critical links identified, update link weight
                     var bottleneckLinks = lDP.Where(l => l.ResidualBandwidth == B);
                     foreach (var link in bottleneckLinks)
-                        _Cie[ie].Add(link);
-                    // For each critical links identified, update link weight
-                    foreach (var link in bottleneckLinks)
-                        weight[link] = weight[link] + 1d / (B * D);
-                    // Delete all link beloning to LDP
-                    foreach (var link in lDP)
+                    {
+                        //_Cie[ie].Add(link);
+                        //weight[link] = weight[link] + 1d / (B * D); // lamda
+                        weights[link] += 1; // lamda, paper 2003 p.6
+                    }                                          
+                        
+                    // Delete all link belonging to LDP
+                    foreach (var link in lDP) // MDWCRA
                         eliminatedLinks.Add(link);
+
                     // Find the next LDP
-                    lDP = FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
+                    lDP = _ldp.FindLeastDelayPath(ie.Ingress.Key, ie.Egress.Key, eliminatedLinks);
                 }
             }
 
-            eliminatedLinks.Clear();
+            //eliminatedLinks.Clear();
 
             // Eliminate all links that have residual bandwidth less then bandwidth demand
-            foreach (var link in _Topology.Links)
-                if (link.ResidualBandwidth < request.Demand)
-                    eliminatedLinks.Add(link);
+            //foreach (var link in _Topology.Links)
+                //if (link.ResidualBandwidth < request.Demand)
+                    //eliminatedLinks.Add(link);
 
             EDSP edsp = new EDSP(_Topology);
             var path = edsp.FindFeasiblePath(
-                request.SourceId, request.DestinationId, eliminatedLinks, weight, delay, (int)request.Delay);
+                request.SourceId, request.DestinationId, eliminatedBwLinks, weights, delays, (int)request.Delay);
+            // mang delay so nguyen dung lam chi so trong extended Dijkstra
 
-            if (path.Sum(l => l.Delay) > request.Delay)
-                throw new Exception("Not feasible path");
+            //if (path.Sum(l => l.Delay) > request.Delay)
+            //    throw new Exception("Not feasible path");
 
-            if (_Topology.Links.Min(l => l.ResidualBandwidth) < 0)
-                throw new Exception("Residual bandwidth less than 0");
+            //if (_Topology.Links.Min(l => l.ResidualBandwidth) < 0)
+            //    throw new Exception("Residual bandwidth less than 0");
 
             return path;
         }

@@ -20,62 +20,59 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             _Topology = topology;
         }
 
-        private List<Link> FindCDSet(Node s, Node d, HashSet<Link> eliminatedLinks)
+        //private List<Link> FindCDSet(Node s, Node d, HashSet<Link> eliminatedLinks)
+        private List<Link> FindCDSet(Node s, Node d)
         {
             LDP ldp = new LDP(_Topology);
             List<Link> LP = null;
             List<Link> CD = new List<Link>();
-            HashSet<Link> E = new HashSet<Link>(eliminatedLinks);
+            //HashSet<Link> E = new HashSet<Link>(eliminatedLinks);
+            HashSet<Link> E = new HashSet<Link>();
 
             while (true)
             {
                 LP = ldp.FindLeastDelayPath(s.Key, d.Key, E);
                 if (LP.Count == 0)
                     break;
-
+                
                 double minRB = LP.Min(l => l.ResidualBandwidth);
-                Link cd = LP.FirstOrDefault(l => l.ResidualBandwidth == minRB);
-
-                CD.Add(cd);
-                E.Add(cd);
+                //Link cd = LP.FirstOrDefault(l => l.ResidualBandwidth == minRB);
+                var bottleneckLinks = LP.Where(l => l.ResidualBandwidth == minRB);
+                foreach (var link in bottleneckLinks)
+                {
+                    CD.Add(link);
+                    E.Add(link);
+                }                                  
             }
 
             return CD;
         }
 
+        // caoth
         public override List<Link> GetPath(Request request)
         {
-            List<Link> path = null;
-            Dictionary<Link, double> weight = new Dictionary<Link, double>();
-            Dictionary<Link, int> delay = new Dictionary<Link, int>();
-            HashSet<Link> eliminatedLinks = new HashSet<Link>();
-            FordFulkerson fordFulkerson = new FordFulkerson(_Topology);
-            Dijkstra dijkstra = new Dijkstra(_Topology);
-            Dictionary<Link, double> oldResidualBandwidth = new Dictionary<Link, double>();
+            List<Link> path = new List<Link>();
 
+            Dictionary<Link, double> weights = new Dictionary<Link, double>();            
+            //HashSet<Link> eliminatedLinks = new HashSet<Link>();
+            FordFulkerson fordFulkerson = new FordFulkerson(_Topology);
+            
             Dictionary<Link, double> sumCM = new Dictionary<Link, double>();
             Dictionary<Link, double> sumCD = new Dictionary<Link, double>();
 
             // initialize
             foreach (Link link in _Topology.Links)
             {
-                weight[link] = 0;
+                weights[link] = 0;
                 sumCD[link] = 0;
-                sumCM[link] = 0;
-                delay[link] = (int)link.Delay;
-
-                if (link.ResidualBandwidth < request.Demand)
-                {
-                    eliminatedLinks.Add(link);
-                    oldResidualBandwidth[link] = link.ResidualBandwidth;
-                    link.ResidualBandwidth = 0;
-                }
+                sumCM[link] = 0;                
             }
 
             foreach (IEPair ie in _Topology.IEPairs)
             {
                 List<Link> CM = fordFulkerson.FindMinCutSet(ie.Ingress, ie.Egress);
-                List<Link> CD = FindCDSet(ie.Ingress, ie.Egress, eliminatedLinks);
+                //List<Link> CD = FindCDSet(ie.Ingress, ie.Egress, eliminatedLinks);
+                List<Link> CD = FindCDSet(ie.Ingress, ie.Egress);
 
                 foreach (Link link in CM)
                 {
@@ -90,36 +87,50 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
             foreach (Link link in _Topology.Links)
             {
-                weight[link] = (1 + Mi * sumCM[link] + Upsilon * sumCD[link]) / link.ResidualBandwidth;
+                weights[link] = (1 + Mi * sumCM[link] + Upsilon * sumCD[link]) / link.ResidualBandwidth;
+            }
+
+            //caoth 2015
+            Dijkstra dijkstra = new Dijkstra(_Topology);
+            Dictionary<Link, double> oldResidualBandwidths = new Dictionary<Link, double>();
+            
+            // link residual
+            foreach (Link link in _Topology.Links)
+            {
+                if (link.ResidualBandwidth < request.Demand)
+                {
+                    oldResidualBandwidths[link] = link.ResidualBandwidth;
+                    link.ResidualBandwidth = 0;
+                }
             }
 
             while (true)
-            {
-                path = dijkstra.GetShortestPath(request.SourceId, request.DestinationId, weight);
-
-                // if no path is found
-                if (path.Count == 0)
+            {                
+                path = dijkstra.GetShortestPath(request.SourceId, request.DestinationId, weights); // Dijkstra không xét link có residual bw == 0
+                if (path.Count > 0)
                 {
-                    break; // break to reject the request.
+                    var pathDelay = path.Sum(l => l.Delay); // delay here is the min delay, dont need to apply latency-rate server formulate
+                    if (pathDelay <= request.Delay)
+                        break; // return path
+                    else // remove bottle neck link then continue finding
+                    {
+                        double minRB = path.Min(l => l.ResidualBandwidth);
+                        Link bottleNeckLink = path.FirstOrDefault(l => l.ResidualBandwidth == minRB);
+                        oldResidualBandwidths[bottleNeckLink] = bottleNeckLink.ResidualBandwidth;
+                        bottleNeckLink.ResidualBandwidth = 0; // chú ý!
+                    }
                 }
-                else if (path.Sum(l => l.Delay) <= request.Delay)
-                    break; // break to return the feasible path.
-                else
+                else // no path
                 {
-                    // if the found path is not feasible
-                    double minCP = path.Min(l => l.Capacity);
-                    Link rmLink = path.FirstOrDefault(l => l.Capacity == minCP);
-
-                    oldResidualBandwidth[rmLink] = rmLink.ResidualBandwidth;
-                    rmLink.ResidualBandwidth = 0;
-                    eliminatedLinks.Add(rmLink);
+                    break;
                 }
             }
 
-            foreach (var item in oldResidualBandwidth)
+            // restore
+            foreach (var item in oldResidualBandwidths)
             {
                 item.Key.ResidualBandwidth = item.Value;
-            }
+            }                                    
 
             return path;
         }

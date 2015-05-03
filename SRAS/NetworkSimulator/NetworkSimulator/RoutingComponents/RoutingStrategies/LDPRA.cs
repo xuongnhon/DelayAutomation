@@ -26,6 +26,7 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             _CostLink = new Dictionary<Link, double>();
         }
 
+        // caoth LDA
         public override List<Link> GetPath(SimulatorComponents.Request request)
         {
             List<Link> resultPath = new List<Link>();

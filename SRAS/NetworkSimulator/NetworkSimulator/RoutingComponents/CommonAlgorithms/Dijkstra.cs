@@ -65,7 +65,7 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
                 T.Remove(u);
 
                 // Browse all adjacent node to update distance from s.
-                foreach (var link in u.Links.Where(l => l.ResidualBandwidth > 0))
+                foreach (var link in u.Links.Where(l => l.ResidualBandwidth > 0)) // Dijkstra không xét link có residual bw == 0 !!!
                 {
                     var v = link.Destination;
                     if (_Distance[v] > _Distance[u] + cost[link])

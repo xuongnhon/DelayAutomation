@@ -58,11 +58,13 @@ namespace NetworkSimulator.NetworkComponents
         public Node Source
         {
             get { return _Source; }
+            set { _Source = value; }
         }
 
         public Node Destination
         {
             get { return _Destination; }
+            set { _Destination = value; }
         }
 
         //17.11.2014 ThaoHT:

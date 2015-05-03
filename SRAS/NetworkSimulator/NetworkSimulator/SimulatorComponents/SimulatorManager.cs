@@ -92,25 +92,25 @@ namespace NetworkSimulator.SimulatorComponents
                 RoutingStrategy rs = null;
                 switch (ca.Name)
                 {
-                    case "P-LCBR":
-                        rs = new P_LCBR(_Topology) 
-                        { 
-                            K = ca.GetParam<int>("K"), 
-                            Alpha = ca.GetParam<double>("Alpha") 
-                        };
-                        break;
+                    //case "P-LCBR":
+                    //    rs = new P_LCBR(_Topology) 
+                    //    { 
+                    //        K = ca.GetParam<int>("K"), 
+                    //        Alpha = ca.GetParam<double>("Alpha") 
+                    //    };
+                    //    break;
 
                     case "LDPRA":
                         rs = new LDPRA(_Topology);
                         break;
                        
-                    case "DC-MHA":
-                        rs = new DC_MHA(_Topology);
-                        break;
+                    //case "DC-MHA":
+                    //    rs = new DC_MHA(_Topology);
+                    //    break;
 
-                    case "DC-MIRA":
-                        rs = new DC_MIRA(_Topology) { Alpha = ca.GetParam<int>("Alpha") };
-                        break;
+                    //case "DC-MIRA":
+                    //    rs = new DC_MIRA(_Topology) { Alpha = ca.GetParam<int>("Alpha") };
+                    //    break;
 
                     case "MDWCRA":
                         rs = new MDWCRA(_Topology);
@@ -128,20 +128,21 @@ namespace NetworkSimulator.SimulatorComponents
                         rs = new eHRABDC(_Topology);
                         break;
 
-                    case "ACSBDRA":
-                        rs = new ACSBDRA(_Topology);
-                        break;
+                    //case "ACSBDRA":
+                    //    rs = new ACSBDRA(_Topology);
+                    //    break;
 
-                    case "HBDRA":
-                        rs = new HBDRA(_Topology);
-                        break;
+                    //case "HBDRA":
+                    //    rs = new HBDRA(_Topology);
+                    //    break;
 
-                    case "BDCRA":
-                        rs = new BDCRA(_Topology);
-                        break;
-                    case "BDCRA-Heu":
-                        rs = new BDCRA_Heu(_Topology);
-                        break;
+                    //case "BDCRA":
+                    //    rs = new BDCRA(_Topology);
+                    //    break;
+                    //case "BDCRA-Heu":
+                    //    rs = new BDCRA_Heu(_Topology);
+                    //    break;
+
                     case "DCW_heDij":
                         rs = new DWC_heDij(_Topology);
                         break;
@@ -164,45 +165,45 @@ namespace NetworkSimulator.SimulatorComponents
 
                     /////////////////////////////////////////////////////
 
-                    case "PBWA":
-                        rs = new PBWA(_Topology);
-                        break;
+                    //case "PBWA":
+                    //    rs = new PBWA(_Topology);
+                    //    break;
 
-                    case "NewPBWA":
-                        rs = new NewPBWA(_Topology);
-                        break;
+                    //case "NewPBWA":
+                    //    rs = new NewPBWA(_Topology);
+                    //    break;
 
-                    case "NewBLGC":
-                        rs = new NewBLGC(_Topology);
-                        break;
+                    //case "NewBLGC":
+                    //    rs = new NewBLGC(_Topology);
+                    //    break;
 
-                    case "MHA":
-                        rs = new MHA(_Topology);
-                        break;
-                    case "WSP":
-                        rs = new WSP(_Topology);
-                        break;
-                    case "BCRA":
-                        rs = new BCRA(_Topology);
-                        break;
-                    case "MIRA":
-                        rs = new MIRA(_Topology) { Alpha = ca.GetParam<int>("Alpha") };
-                        break;
-                    case "DORA":
-                        rs = new DORA(_Topology) { BWP = ca.GetParam<double>("BWP") };
-                        break;
-                    case "RRATE":
-                        rs = new RRATE(_Topology)
-                        {
-                            K = ca.GetParam<int>("K"),
-                            N = ca.GetParam<int>("N"),
-                            K1 = ca.GetParam<double>("K1"),
-                            K2 = ca.GetParam<double>("K2")
-                        };
-                        break;
-                    case "POOA":
-                        rs = new POOA(_Topology) { K = ca.GetParam<int>("K") };
-                        break;
+                    //case "MHA":
+                    //    rs = new MHA(_Topology);
+                    //    break;
+                    //case "WSP":
+                    //    rs = new WSP(_Topology);
+                    //    break;
+                    //case "BCRA":
+                    //    rs = new BCRA(_Topology);
+                    //    break;
+                    //case "MIRA":
+                    //    rs = new MIRA(_Topology) { Alpha = ca.GetParam<int>("Alpha") };
+                    //    break;
+                    //case "DORA":
+                    //    rs = new DORA(_Topology) { BWP = ca.GetParam<double>("BWP") };
+                    //    break;
+                    //case "RRATE":
+                    //    rs = new RRATE(_Topology)
+                    //    {
+                    //        K = ca.GetParam<int>("K"),
+                    //        N = ca.GetParam<int>("N"),
+                    //        K1 = ca.GetParam<double>("K1"),
+                    //        K2 = ca.GetParam<double>("K2")
+                    //    };
+                    //    break;
+                    //case "POOA":
+                    //    rs = new POOA(_Topology) { K = ca.GetParam<int>("K") };
+                    //    break;
                     default:
                         throw new Exception("Routing strategy not found, please check your configuration");
                 }

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="NetworkComponents\Tree.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\AllSimplePaths.cs" />
+    <Compile Include="RoutingComponents\CommonAlgorithms\HeuristicDijkstra.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\EBF.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\EDSP.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\FloydWarshall.cs" />
@@ -59,13 +60,7 @@
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\LmmiraCore.cs" />
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\MulticastRoutingStrategy.cs" />
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\SPT.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\ACSBDRA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\BDCRA-Heu.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\BDCRA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\MDMF_Heu.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\DC-MHA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\DC-MIRA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\HBDRA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\DCW_heDij.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\M-MDWCRA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\LDPRA.cs" />
@@ -73,12 +68,8 @@
     <Compile Include="RoutingComponents\RoutingStrategies\BBW_exDij.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\MDMF.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\MDMF_exDij.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\P-LCBR.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\MDWCRA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\NewBLGC.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\NewPBWA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\HRABDC.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\PBWA.cs" />
     <Compile Include="SimulatorComponents\MulticastSimulatorComponents\MulticastRequest.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,22 +83,13 @@
     <Compile Include="RoutingComponents\CommonAlgorithms\FordFulkerson.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\ShortestPaths.cs" />
     <Compile Include="RoutingComponents\CommonAlgorithms\YenAlgorithm.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\BCRA.cs" />
     <Compile Include="RoutingComponents\CommonObjects\IEPair.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\DORA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\MHA.cs" />
     <Compile Include="NetworkComponents\Link.cs" />
     <Compile Include="NetworkComponents\Node.cs" />
     <Compile Include="NetworkComponents\Topology.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\MIRA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\POOA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\RoutingStrategy.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\RRATE.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\WSP.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SimulatorComponents\ITickerListener.cs" />
     <Compile Include="SimulatorComponents\MicroLibrary.cs" />
     <Compile Include="SimulatorComponents\MulticastSimulatorComponents\MulticastRouter.cs" />
@@ -167,35 +149,6 @@
   <ItemGroup>
     <Folder Include="bin\Debug\Request\Cesnet\" />
     <Folder Include="bin\Debug\Request\Spt\" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
