@@ -100,8 +100,8 @@ namespace NetworkSimulator.SimulatorComponents
                     //    };
                     //    break;
 
-                    case "LDPRA":
-                        rs = new LDPRA(_Topology);
+                    case "LDA":
+                        rs = new LDA(_Topology);
                         break;
                        
                     //case "DC-MHA":

@@ -7,13 +7,13 @@ using System.Text;
 
 namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 {
-    class LDPRA : RoutingStrategy
+    class LDA : RoutingStrategy
     {
         private Dijkstra _Dijkstra;
 
         private Dictionary<Link, double> _CostLink;
 
-        public LDPRA(Topology topology)
+        public LDA(Topology topology)
             : base(topology)
         {
             Initialize();

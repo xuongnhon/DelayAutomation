@@ -52,7 +52,7 @@
         <Param Name="Epsilon" Value="0.01"/>
       </Params>
     </RoutingAlgorithm>
-    <RoutingAlgorithm Name="LDPRA"/>
+    <RoutingAlgorithm Name="LDA"/>
     <RoutingAlgorithm Name="HRABDC"/>
     <RoutingAlgorithm Name="MDWCRA"/>
     

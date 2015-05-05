@@ -8,7 +8,7 @@
 
   <!--List of algorithms to run (Must exists in network simulator main config file)-->
   <Algorithms>
-    <Algorithm name="MIRA"/>
+    <Algorithm name="LDA"/>
     <Algorithm name="M-MDWCRA"/>
     <!--<Algorithm name="HRABDC"/>
     <Algorithm name="eHRABDC"/>
@@ -39,9 +39,9 @@
       <Requests>
         
       </Requests>
-    </Topology>
+    </Topology>-->
 
-    <Topology name = "CESNET"
+    <!--<Topology name = "CESNET"
               filepath = "Map\cesnet_map.dat"
               IEfilepath = "Map\cesnet_ie_list.dat"
               requestDir = "Request\Cesnet\"
@@ -49,9 +49,9 @@
       <Requests>
         
       </Requests>
-    </Topology>
+    </Topology>-->
     
-    <Topology name = "NET1"
+    <!--<Topology name = "NET1"
               filepath = "Map\NET-50Node.dat"
               IEfilepath = "Map\net1_ie.dat"
               requestDir = "Request\NET1\"
