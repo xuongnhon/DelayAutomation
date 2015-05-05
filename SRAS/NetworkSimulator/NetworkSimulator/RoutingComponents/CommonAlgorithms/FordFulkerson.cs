@@ -22,23 +22,24 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
             Initialize();
         }
 
-        private Dictionary<Link, double> _UsingBandwidthCopy;
+        //private Dictionary<Link, double> _UsingBandwidthCopy;
 
         private void Initialize()
         {
             _BFS = new BreadthFirstSearch(_Topology);
-            _UsingBandwidthCopy = new Dictionary<Link, double>();
+            //_UsingBandwidthCopy = new Dictionary<Link, double>();
 
             _backupResidualBandwidthCopy = new Dictionary<Link, double>();
         }
 
         private void BackupTopology()
         {
-            _UsingBandwidthCopy.Clear();
+            //_UsingBandwidthCopy.Clear();
             _backupResidualBandwidthCopy.Clear();
             foreach (var link in _Topology.Links)
             {
-                _UsingBandwidthCopy[link] = link.UsingBandwidth;
+                //_UsingBandwidthCopy[link] = link.UsingBandwidth;
+                _backupResidualBandwidthCopy[link] = link.ResidualBandwidth;
             }
         }
 
@@ -46,7 +47,8 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
         {
             foreach (var link in _Topology.Links)
             {
-                link.UsingBandwidth = _UsingBandwidthCopy[link];
+                //link.UsingBandwidth = _UsingBandwidthCopy[link];
+                link.ResidualBandwidth = _backupResidualBandwidthCopy[link];
             }
         }
 
