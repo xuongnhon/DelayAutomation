@@ -60,10 +60,10 @@
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\LmmiraCore.cs" />
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\MulticastRoutingStrategy.cs" />
     <Compile Include="RoutingComponents\MulticastRoutingStrategies\SPT.cs" />
+    <Compile Include="RoutingComponents\RoutingStrategies\LDA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\MDMF_Heu.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\DCW_heDij.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\M-MDWCRA.cs" />
-    <Compile Include="RoutingComponents\RoutingStrategies\LDPRA.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\eHRABDC.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\BBW_exDij.cs" />
     <Compile Include="RoutingComponents\RoutingStrategies\MDMF.cs" />
