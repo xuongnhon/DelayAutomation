@@ -94,6 +94,7 @@ namespace NetworkSimulator.NetworkComponents
             this._Capacity = capacity;
             this._Delay = delay;
             this._UsingBandwidth = usingBandwidth;
+            _PercentOfBandwidthUsed = new Dictionary<Response, double>();
         }
 
         public override string ToString()
