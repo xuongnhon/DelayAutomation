@@ -19,36 +19,42 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
         private static readonly double MaxValue = 10000;
 
         public List<Link> FindFeasiblePath(
-            int s, int d, HashSet<Link> E, Dictionary<Link, double> w1, Dictionary<Link, int> w2, int x)
+            int s, int d, HashSet<Link> E, Dictionary<Link, double> weights, Dictionary<Link, int> delays, int delta)
         {
-            int nv = _Topology.Nodes.Count;
-            double[,] dist = new double[nv, x + 1];
-            int[,] prev = new int[nv, x + 1];
+            int numberOfNodes = _Topology.Nodes.Count;
+            double[,] dist = new double[numberOfNodes, delta + 1];
+            int[,] prev = new int[numberOfNodes, delta + 1];
 
-            for (int v = 0; v < nv; v++)
-                for (int i = 0; i <= x; i++)
+            for (int v = 0; v < numberOfNodes; v++)
+                for (int i = 0; i <= delta; i++)
                 {
                     dist[v, i] = MaxValue;
                     prev[v, i] = -1;
                 }
 
-            for (int i = 0; i <= x; i++)
+            // distance at source node
+            for (int i = 0; i <= delta; i++)
             {
                 dist[s, i] = 0;
             }
 
             List<int[]> Q = new List<int[]>();
-            for (int v = 0; v < nv; v++)
-                for (int i = 0; i <= x; i++)
+            for (int v = 0; v < numberOfNodes; v++)
+                for (int i = 0; i <= delta; i++)
                     Q.Add(new int[] {v, i});
 
             while (Q.Count > 0)
             {
-                // Extract min u-k pair in Q
+                // Extract min u-k pair in Q, u is NodeKey, k is the k_th entry (k is also the delay
                 int[] minUK = Q.First();
                 foreach (var uk in Q)
+                {
                     if (dist[uk[0], uk[1]] < dist[minUK[0], minUK[1]])
+                    {
                         minUK = uk;
+                    }
+                }
+                
                 Q.Remove(minUK);
 
                 int u = minUK[0], k = minUK[1];
@@ -59,17 +65,17 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
                 {
                     int v = link.Destination.Key;
                     // Relax
-                    int kc = k + w2[link];
-                    if (kc <= x)
-                        if (dist[v, kc] > dist[u, k] + w1[link])
+                    int kc = k + delays[link];
+                    if (kc <= delta)
+                        if (dist[v, kc] > dist[u, k] + weights[link])
                         {
-                            dist[v, kc] = dist[u, k] + w1[link];
+                            dist[v, kc] = dist[u, k] + weights[link];
                             prev[v, kc] = u;
                         }
                 }
             }
 
-            return ConstructPath(prev, dist, d, w2, x);
+            return ConstructPath(prev, dist, d, delays, delta);
         }
 
         private List<Link> ConstructPath(int[,] prev, double[,] dist, int d, Dictionary<Link, int> w2, int x)

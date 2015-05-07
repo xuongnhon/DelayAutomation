@@ -30,6 +30,7 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
                 string rKey = str[1] + '|' + str[0];
                 wc[rKey] = item.Value;
             }
+
             HashSet<string> Ec = new HashSet<string>();
             foreach (var item in E)
             {
@@ -39,10 +40,10 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
             }
 
             // Initialize
-            int nv = topology.Nodes.Count;
-            double[] dist = new double[nv];
+            int numberOfNodes = topology.Nodes.Count;
+            double[] dist = new double[numberOfNodes];
 
-            for (int v = 0; v < nv; v++)
+            for (int v = 0; v < numberOfNodes; v++)
                 dist[v] = MaxValue;
             dist[d] = 0;
 
@@ -50,7 +51,7 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
 
             while (Q.Count > 0)
             {
-                // Find node u within T set, where d[u] = min{d[z]:z within T
+                // Find node u within T set, where d[u] = min{d[z]} z within T
                 var u = Q.First();
                 foreach (var node in Q)
                     if (dist[node.Key] < dist[u.Key])
@@ -87,21 +88,21 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
         }
 
         public List<Link> FindOptimalPath(
-             Topology t, HashSet<string> E, int s, int d, Dictionary<string, double> w1, Dictionary<string, double> w2, double c2)
+             Topology t, HashSet<string> eliminatedLinks, int s, int d, Dictionary<string, double> weights, Dictionary<string, double> delays, double delta)
         {
             int nv = t.Nodes.Count;
-            double[] dist = new double[nv];
+            double[] dist = new double[nv]; // index array is key node !
             int[] prev = new int[nv];
 
             // Delay so far of each node from source
-            double[] w2SoFar = new double[nv];
+            double[] delaySoFar = new double[nv];
 
             // Least delay from each node to destination node
-            double[] leastW2ToDestination = ComputeLeastWeight(t, E, d, w2);
+            double[] leastW2ToDestination = ComputeLeastWeight(t, eliminatedLinks, d, delays);
 
             for (int v = 0; v < nv; v++)
             {
-                w2SoFar[v] = 0;
+                delaySoFar[v] = 0;
                 dist[v] = MaxValue;
                 prev[v] = -1;
             }
@@ -121,17 +122,17 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
 
                 // Browse all adjacent node that can satisfy delay constraint to update total link weight from s.
                 List<Link> links = u.Links
-                    .Where(l => (w2SoFar[u.Key] + w2[l.Key] + leastW2ToDestination[l.Destination.Key]) <= c2
-                        && !E.Contains(l.Key)).ToList();
+                    .Where(l => (delaySoFar[u.Key] + delays[l.Key] + leastW2ToDestination[l.Destination.Key]) <= delta
+                        && !eliminatedLinks.Contains(l.Key)).ToList();
 
                 foreach (var link in links)
                 {
                     var v = link.Destination;
                     // Relax
-                    if (dist[v.Key] > dist[u.Key] + w1[link.Key])
+                    if (dist[v.Key] > dist[u.Key] + weights[link.Key])
                     {
-                        dist[v.Key] = dist[u.Key] + w1[link.Key];
-                        w2SoFar[v.Key] = w2SoFar[u.Key] + w2[link.Key];
+                        dist[v.Key] = dist[u.Key] + weights[link.Key];
+                        delaySoFar[v.Key] = delaySoFar[u.Key] + delays[link.Key];
                         prev[v.Key] = u.Key;
                     }
                 }
