@@ -26,8 +26,8 @@ namespace NetworkSimulator.NetworkComponents
 
         private Dictionary<NetworkSimulator.SimulatorComponents.Response, double> _PercentOfBandwidthUsed;
 
-        //17.11.2014 ThaoHT: Dynamic Delay
-        private double _DDelay;
+        //17.11.2014 ThaoHT: Dynamic Delay omit
+        //private double _DDelay;
 
         #endregion
 
@@ -67,18 +67,19 @@ namespace NetworkSimulator.NetworkComponents
             set { _Destination = value; }
         }
 
-        //17.11.2014 ThaoHT:
+        //17.11.2014 ThaoHT: ???
         public double Delay
         {
-            get { return DDelay; }
+            get { return _Delay; }
             set { _Delay = value; }
         }
 
+        /*
         public double DDelay
         {
             get { return _Delay + 1; }
             set { _DDelay = value; }
-        }
+        }*/
 
         public Dictionary<NetworkSimulator.SimulatorComponents.Response, double> PercentOfBandwidthUsed
         {
