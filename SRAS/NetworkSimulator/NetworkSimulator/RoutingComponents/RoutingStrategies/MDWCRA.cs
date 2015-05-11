@@ -140,6 +140,18 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                 //if (link.ResidualBandwidth < request.Demand)
                     //eliminatedLinks.Add(link);
 
+            /*
+            // cath example
+            weights[_Topology.Links.Where(l=>l.Key == "0|1").FirstOrDefault()] = 1;
+            weights[_Topology.Links.Where(l => l.Key == "0|2").FirstOrDefault()] = 2;
+            weights[_Topology.Links.Where(l => l.Key == "1|3").FirstOrDefault()] = 3;
+            //eliminatedLinks.Add("1|4"); //weights["1|4"] = 1;
+            weights[_Topology.Links.Where(l => l.Key == "2|3").FirstOrDefault()] = 1;
+            weights[_Topology.Links.Where(l => l.Key == "2|4").FirstOrDefault()] = 4;
+            weights[_Topology.Links.Where(l => l.Key == "3|5").FirstOrDefault()] = 3;
+            weights[_Topology.Links.Where(l => l.Key == "4|5").FirstOrDefault()] = 2;
+             */ 
+
             EDSP edsp = new EDSP(_Topology);
             var path = edsp.FindFeasiblePath(
                 request.SourceId, request.DestinationId, eliminatedBwLinks, weights, delays, (int)request.Delay);

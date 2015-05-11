@@ -30,10 +30,13 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
             foreach (var link in _Topology.Links)
             {
-                if (link.UsingBandwidth == 0)
+                // caoth 150511
+                /*if (link.UsingBandwidth == 0)
                     weights[link.Key] = 1d / (link.Capacity);
                 else
-                    weights[link.Key] = link.UsingBandwidth / (link.ResidualBandwidth);
+                    weights[link.Key] = link.UsingBandwidth / (link.ResidualBandwidth);*/
+
+                weights[link.Key] = link.UsingBandwidth / (link.ResidualBandwidth * link.Delay) + double.Epsilon;
 
                 delays[link.Key] = link.Delay;
                 if (link.ResidualBandwidth < request.Demand)

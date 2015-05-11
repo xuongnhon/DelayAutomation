@@ -23,7 +23,8 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
             // Copy topology and reverse all 
             Topology copyTopology = new Topology(topology);
             ReverseLinkDirection(copyTopology);
-            Dictionary<string, double> wc = new Dictionary<string, double>();
+
+            Dictionary<string, double> wc = new Dictionary<string, double>(); // reverse delay
             foreach (var item in w)
             {
                 string[] str = item.Key.Split('|');
@@ -31,7 +32,7 @@ namespace NetworkSimulator.RoutingComponents.CommonAlgorithms
                 wc[rKey] = item.Value;
             }
 
-            HashSet<string> Ec = new HashSet<string>();
+            HashSet<string> Ec = new HashSet<string>(); // reverse eliminated links
             foreach (var item in E)
             {
                 string[] str = item.Split('|');
