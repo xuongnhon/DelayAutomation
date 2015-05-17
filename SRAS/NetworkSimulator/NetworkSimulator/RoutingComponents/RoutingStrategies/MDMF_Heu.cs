@@ -101,6 +101,8 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             var path = heDi.FindOptimalPath(
                 _Topology, eliminatedBwLinks, request.SourceId, request.DestinationId, w1, w2, request.Delay);
 
+            CalculateWeightPath(w1, path);
+
             return path;            
         }
     }

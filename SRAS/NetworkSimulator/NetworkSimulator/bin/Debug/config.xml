@@ -12,6 +12,7 @@
   <ResultPrefix>Result</ResultPrefix>
   <ComputingPrefix>Computing</ComputingPrefix>
   <StandardDeviationPrefix>StandardDeviation</StandardDeviationPrefix>
+  <WeightPathPrefix>WeightPath</WeightPathPrefix>
   <NumberOfSplit>100</NumberOfSplit>
   
   <UnicastRoutingAlgorithms>    

@@ -14,7 +14,7 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
         private static readonly double MaxValue = 10000;
 
         public BBW_exDij(Topology topology)
-            :base(topology)
+            : base(topology)
         {
             _Topology = topology;
         }
@@ -26,7 +26,7 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             Dictionary<Link, int> w2 = new Dictionary<Link, int>();
             foreach (var link in _Topology.Links)
             {
-                if (link.UsingBandwidth == 0)                    
+                if (link.UsingBandwidth == 0)
                     w1[link] = 1d / (link.Capacity);
                 else
                     w1[link] = link.UsingBandwidth / (link.ResidualBandwidth);
@@ -39,10 +39,11 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
 
 
             EDSP edsp = new EDSP(_Topology);
-            var path = edsp.FindFeasiblePath(request.SourceId, request.DestinationId, eliminatedLinks, w1, w2, (int)request.Delay);            
+            var path = edsp.FindFeasiblePath(request.SourceId, request.DestinationId, eliminatedLinks, w1, w2, (int)request.Delay);
+
+            CalculateWeightPath(w1, path);
 
             return path;
         }
     }
-    
 }

@@ -98,6 +98,9 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             EDSP edsp = new EDSP(_Topology);
             var path = edsp.FindFeasiblePath(request.SourceId, request.DestinationId, eliminatedLinks, w1, w2, (int)request.Delay);
 
+            //Nhon
+            CalculateWeightPath(w1, path);
+
             return path;
         }
     }

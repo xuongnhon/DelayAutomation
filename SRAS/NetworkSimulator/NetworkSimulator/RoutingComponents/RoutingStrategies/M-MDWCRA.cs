@@ -202,6 +202,10 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             //if (_Topology.Links.Min(l => l.ResidualBandwidth) < 0)
             //    throw new Exception("Residual bandwidth less than 0");
 
+
+            //Nhon
+            CalculateWeightPath(weight, path);
+
             return path;
         }
     }

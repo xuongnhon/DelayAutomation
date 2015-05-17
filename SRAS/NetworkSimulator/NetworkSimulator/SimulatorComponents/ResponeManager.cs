@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,7 +52,7 @@ namespace NetworkSimulator.SimulatorComponents
                 //response.ResponseTime = response.Request.IncomingTime;
 
                 if (response.HasPath() && response.Request.HoldingTime < int.MaxValue) // co dg & dynamic 
-                {                    
+                {
                     _ResponsesToRelease.Add(response);
                     _ResponsesToRelease = _ResponsesToRelease.OrderBy(r => r.ReleasingTime).ToList();
                 }
@@ -84,7 +84,7 @@ namespace NetworkSimulator.SimulatorComponents
                     link.UsingBandwidth -= response.Request.Demand;
                 }
             }
-                        
+
             Console.WriteLine("REL-" + response);
         }
 
@@ -92,7 +92,7 @@ namespace NetworkSimulator.SimulatorComponents
         {
             _ElapsedTime = elapsedTime;
 
-            DoRelease(elapsedTime);        
+            DoRelease(elapsedTime);
 
             if (_ResponsesForStatistics.Count == _RequestDispatcher.ReqCount) // lam xong het cac request
             {
@@ -122,9 +122,12 @@ namespace NetworkSimulator.SimulatorComponents
                 Console.WriteLine("Writing standard deviation to text file...");
                 Statistics.WriteStandardDeviationResultToText(_ResponsesForStatistics, (Topology)_TopologyLockingObject);
 
+                Console.WriteLine("Writing weight path to text file...");
+                Statistics.WriteWeightLinksResultToText(_ResponsesForStatistics);
+
                 Console.WriteLine("Simulator stopping...");
                 SimulatorManager.getInstance().StopSimulate();
-            }                                
+            }
         }
 
         protected void DoRelease(long elapsedTime)

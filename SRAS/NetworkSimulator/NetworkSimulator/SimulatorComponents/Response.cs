@@ -49,6 +49,8 @@ namespace NetworkSimulator.SimulatorComponents
         }
         #endregion
 
+        public double _WeightPath { get; private set; }
+
         // caoth
         public Response()
         {
@@ -59,6 +61,15 @@ namespace NetworkSimulator.SimulatorComponents
             _Request = request;
             _Path = path;
             _ComputingTime = computingTime;
+        }
+
+        //Nhon
+        public Response(Request request, List<Link> path, double computingTime, double weightPath)
+        {
+            _Request = request;
+            _Path = path;
+            _ComputingTime = computingTime;
+            _WeightPath = weightPath;
         }
 
         public override string ToString()

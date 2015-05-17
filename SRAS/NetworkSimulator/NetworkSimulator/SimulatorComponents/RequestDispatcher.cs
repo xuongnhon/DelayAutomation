@@ -148,7 +148,9 @@ namespace NetworkSimulator.SimulatorComponents
                         path = _RoutingStrategy.GetPath(request);
 
                         _Stopwatch.Stop();
-                        Response response = new Response(request, path, _Stopwatch.Elapsed.TotalMilliseconds);
+                        //Response response = new Response(request, path, _Stopwatch.Elapsed.TotalMilliseconds);
+                        //Nhon
+                        Response response = new Response(request, path, _Stopwatch.Elapsed.TotalMilliseconds, _RoutingStrategy.weightPath);
                         _ResponseManager.ReceiveResponse(response);
 
                         ((Topology)_TopologyLockingObject).CalculatePercentOfBandwidthUsedPerLink(response);

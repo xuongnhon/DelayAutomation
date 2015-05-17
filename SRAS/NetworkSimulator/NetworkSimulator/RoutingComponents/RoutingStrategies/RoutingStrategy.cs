@@ -12,17 +12,22 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
         protected Topology _Topology;
         protected Dictionary<Link, double> _ResidualBandwidthCopy;
 
+        //Nhon
+        public double weightPath { get; protected set; }
+
         public RoutingStrategy(Topology topology)
         {
             _Topology = topology;
             _ResidualBandwidthCopy = new Dictionary<Link, double>();
+            //Nhon
+            weightPath = 0;
         }
 
         // caoth: review :((
         public abstract List<Link> GetPath(Request request); //--> MUST DO
 
         //public abstract List<Link> GetPath(int sourceId, int destinationId, double bandwidth);
-        
+
 
         //public abstract List<Link> GetPath(int sourceId, int destinationId, double bandwidth, long incomingTime, long responseTime, long releasingTime);
 
@@ -55,6 +60,32 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
             {
                 link.ResidualBandwidth = _ResidualBandwidthCopy[link];
             }
+        }
+
+        protected void CalculateWeightPath(Dictionary<Link, double> _Weight, List<Link> _Path)
+        {
+            if (_Path.Count > 0)
+            {
+                var sumWeight = (from _WeightItem in _Weight
+                                 from _Link in _Path
+                                 where Object.Equals(_WeightItem.Key, _Link)
+                                 select _WeightItem.Value).Sum();
+                weightPath = sumWeight;
+            }
+            else weightPath = 0;
+        }
+
+        protected void CalculateWeightPath(Dictionary<string, double> _Weight, List<Link> _Path)
+        {
+            if (_Path.Count > 0)
+            {
+                var sumWeight = (from _WeightItem in _Weight
+                                 from _Link in _Path
+                                 where Object.Equals(_WeightItem.Key, _Link.Key)
+                                 select _WeightItem.Value).Sum();
+                weightPath = sumWeight;
+            }
+            else weightPath = 0;
         }
     }
 }

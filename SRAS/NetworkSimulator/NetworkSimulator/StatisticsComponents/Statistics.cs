@@ -413,6 +413,83 @@ namespace NetworkSimulator.StatisticsComponents
             f.Close();
         }
 
+        public static void WriteWeightLinksResultToText(List<Response> _ResponsesForStatistics)
+        {
+            Configuration cfg = Configuration.GetInstance();
+            string weightLinksResultText = cfg.getSelectedUnicastAlgorithm().Name;
+            List<int> splits = new List<int>();
+            int splitNum = cfg.NumberOfSplit;//Bang nhau het
+            int numsRequest = _ResponsesForStatistics.Count();
+            int counter = 0;
+            while (counter <= numsRequest)
+            {
+                counter += splitNum;
+                if (counter <= numsRequest)
+                {
+                    splits.Add(counter);
+                }
+                else
+                {
+                    if (splits.Count > 0)
+                    {
+                        if (splits.ElementAt(splits.Count - 1) < numsRequest)
+                            splits.Add(numsRequest);
+                    }
+                    else
+                        splits.Add(numsRequest);
+                }
+            }
+
+
+            foreach (int i in splits)
+            {
+                var responesHavePath = (from rs in _ResponsesForStatistics select rs)
+                                                .Skip(0)
+                                                .Take(i).Where(item => item.Path.Count > 0);
+                double sumLinks = responesHavePath.Select(item => item.Path.Count).Sum();
+                double sumWeightPath = responesHavePath.Select(item => item._WeightPath).Sum();
+
+                weightLinksResultText += "\t" + Math.Round((sumWeightPath / sumLinks), 3);
+            }
+            
+            // check for directory exist
+            string[] dir = cfg.StatisticsFilepath.Split('\\');
+            string directory = "";
+            for (int i = 0; i < dir.Count() - 1; i++)
+            {
+                directory += dir[i] + "\\";
+            }
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            // if result file not exist create the split info and create a new file
+            string resultfile = cfg.StatisticsFilepath + "." + cfg.WeightPathPrefix;
+            if (!File.Exists(resultfile))
+            {
+                string info = "#";
+                foreach (int i in splits)
+                {
+                    info += "\t" + i;
+                }
+                FileStream fileResult = new FileStream(resultfile, FileMode.Create);
+                StreamWriter wr = new StreamWriter(fileResult);
+                wr.WriteLine(info);
+                wr.Dispose();
+                wr.Close();
+                fileResult.Dispose();
+                fileResult.Close();
+            }
+
+            // Append to text file
+            FileStream f = new FileStream(resultfile, FileMode.Append);
+            StreamWriter wrc = new StreamWriter(f);
+            wrc.WriteLine(weightLinksResultText);
+            wrc.Close();
+            f.Close();
+        }
+
         public static void ExportExcel(string FileName, string _Parameter, int _NumOfRequest)
         {
             string _Cell = "";

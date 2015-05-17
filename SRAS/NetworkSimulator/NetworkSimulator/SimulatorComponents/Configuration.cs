@@ -70,6 +70,7 @@ namespace NetworkSimulator
 
         //public string AcceptedBandwidthRatioPrefix { get; set; }
         public string StandardDeviationPrefix { get; set; }
+        public string WeightPathPrefix { get; set; }
 
         public int NumberOfSplit { get; set; }
 
