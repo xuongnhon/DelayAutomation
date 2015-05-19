@@ -124,6 +124,9 @@ namespace NetworkSimulator.SimulatorComponents
 
                 Console.WriteLine("Writing weight path to text file...");
                 Statistics.WriteWeightLinksResultToText(_ResponsesForStatistics);
+				
+				Console.WriteLine("Writing time to text file...");
+                Statistics.WriteTime(_ResponsesForStatistics);
 
                 Console.WriteLine("Simulator stopping...");
                 SimulatorManager.getInstance().StopSimulate();

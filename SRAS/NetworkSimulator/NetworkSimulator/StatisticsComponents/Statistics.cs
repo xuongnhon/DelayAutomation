@@ -451,7 +451,7 @@ namespace NetworkSimulator.StatisticsComponents
 
                 weightLinksResultText += "\t" + Math.Round((sumWeightPath / sumLinks), 3);
             }
-            
+
             // check for directory exist
             string[] dir = cfg.StatisticsFilepath.Split('\\');
             string directory = "";
@@ -473,6 +473,56 @@ namespace NetworkSimulator.StatisticsComponents
                 {
                     info += "\t" + i;
                 }
+                FileStream fileResult = new FileStream(resultfile, FileMode.Create);
+                StreamWriter wr = new StreamWriter(fileResult);
+                wr.WriteLine(info);
+                wr.Dispose();
+                wr.Close();
+                fileResult.Dispose();
+                fileResult.Close();
+            }
+
+            // Append to text file
+            FileStream f = new FileStream(resultfile, FileMode.Append);
+            StreamWriter wrc = new StreamWriter(f);
+            wrc.WriteLine(weightLinksResultText);
+            wrc.Close();
+            f.Close();
+        }
+
+        public static void WriteTime(List<Response> _ResponsesForStatistics)
+        {
+            Configuration cfg = Configuration.GetInstance();
+            string weightLinksResultText = cfg.getSelectedUnicastAlgorithm().Name;
+            double sum = 0;
+            for (int i = 0; i < _ResponsesForStatistics.Count; i++)
+            {
+                weightLinksResultText += "\t" + Math.Round(_ResponsesForStatistics[i].ComputingTime, 3);
+                sum += Math.Round(_ResponsesForStatistics[i].ComputingTime, 3);
+            }
+            weightLinksResultText += "\t|| " + Math.Round(sum/_ResponsesForStatistics.Count, 3);
+            // check for directory exist
+            string[] dir = cfg.StatisticsFilepath.Split('\\');
+            string directory = "";
+            for (int i = 0; i < dir.Count() - 1; i++)
+            {
+                directory += dir[i] + "\\";
+            }
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            // if result file not exist create the split info and create a new file
+            string resultfile = cfg.StatisticsFilepath + "." + "Time";
+            if (!File.Exists(resultfile))
+            {
+                string info = "#";
+                for (int i = 1; i <= _ResponsesForStatistics.Count; i++)
+                {
+                    info += "\t" + i;
+                }
+                info += "\t#";
                 FileStream fileResult = new FileStream(resultfile, FileMode.Create);
                 StreamWriter wr = new StreamWriter(fileResult);
                 wr.WriteLine(info);

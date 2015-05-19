@@ -37,12 +37,11 @@ namespace NetworkSimulator.RoutingComponents.RoutingStrategies
                     eliminatedLinks.Add(link);
             }
 
-
             EDSP edsp = new EDSP(_Topology);
             var path = edsp.FindFeasiblePath(request.SourceId, request.DestinationId, eliminatedLinks, w1, w2, (int)request.Delay);
 
             CalculateWeightPath(w1, path);
-
+            //Console.WriteLine();
             return path;
         }
     }
